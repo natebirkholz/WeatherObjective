@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "LocationController.h"
+#import "Enums.h"
 
 @interface NetworkController : NSObject
 
 @property (strong, nonatomic) LocationController *locationController;
+@property (strong, nonatomic) NSString *urlForApi;
 
 +(id)sharedController;
 

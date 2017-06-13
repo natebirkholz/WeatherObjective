@@ -41,13 +41,42 @@
 - (instancetype) init {
     if (self = [super init]) {
         self.jsonController = [[JsonController alloc] init];
+        self.locationController = [[LocationController alloc] init];
     }
 
     return self;
 }
 
-- (void)getArrayOfForecastsWithCompletionHandler:(void (^)(NSArray *forecasts))completionHandler {
+- (void)getArrayOfForecastsWithCompletionHandler:(void (^)(NSArray  * _Nullable forecasts, WeatherErrorType error))completionHandler {
+    NSMutableString *locationString = [[NSMutableString alloc] init];
+    NSString *zipCode = [[self locationController] currentZipCode];
+    if (!zipCode) {
+        [locationString setString:@"92102"];
+    } else {
+        [locationString setString:zipCode];
+    }
 
+    NSString *urlString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/forecast/daily?zip=%@,us&units=imperial&cnt=7&APPID=3e15652a662d33a186fdcf5567cf1f66", locationString];
+    NSURL *apiUrl = [[NSURL alloc] initWithString: urlString];
+
+
+    [self fetchJSONDataFromURL:apiUrl withCompletionHandler:^(NSData *dataFromURL) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!dataFromURL) {
+                completionHandler(nil, WeatherErrorNetworkError);
+                return;
+            } else {
+                NSArray *forecasts = [[self jsonController] parseForecastsFromJsonData: dataFromURL];
+                if ([forecasts count] > 0) {
+                    completionHandler(forecasts, WeatherErrorNoError);
+                    return;
+                } else {
+                    completionHandler(nil, WeatherErrorParseError);
+                    return;
+                }
+            }
+        });
+    }];
 
 
 }

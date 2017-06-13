@@ -27,6 +27,7 @@
     NSDictionary *dictionaryFromJson = [NSJSONSerialization JSONObjectWithData:rawJsonData options:NSJSONReadingAllowFragments error:&error];
     if (error) {
         NSLog(@"Error parsing JSON: %@", [error localizedDescription]);
+        return [[NSArray alloc] init];
     }
 
     for (NSDictionary *jsonDictionary in dictionaryFromJson[@"list"]) {

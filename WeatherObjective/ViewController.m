@@ -17,6 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [[self tableView] setDelegate: self];
+    [[self tableView] setDataSource: self];
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
