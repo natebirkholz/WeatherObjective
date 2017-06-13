@@ -17,7 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *minTempLabel;
 @property (weak, nonatomic) IBOutlet UILabel *humidityLabel;
 
-@property(strong, nonatomic) Forecast *forecast;
+@property (strong, nonatomic) Forecast *forecast;
+@property (strong, nonatomic) UIImage *forecastImage;
 
 
 

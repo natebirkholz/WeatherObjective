@@ -155,14 +155,14 @@
 			children = (
 				43D311D81EE890E4006DD370 /* DetailViewController.h */,
 				43D311D91EE890E4006DD370 /* DetailViewController.m */,
-				43D311E11EE89265006DD370 /* NetworkController.h */,
-				43D311E21EE89265006DD370 /* NetworkController.m */,
-				43D311C71EE88F3B006DD370 /* ViewController.h */,
-				43D311C81EE88F3B006DD370 /* ViewController.m */,
 				433C94DD1EE8A87C00B852C8 /* JsonController.h */,
 				433C94DE1EE8A87C00B852C8 /* JsonController.m */,
 				433C94E01EE9B6C100B852C8 /* LocationController.h */,
 				433C94E11EE9B6C100B852C8 /* LocationController.m */,
+				43D311E11EE89265006DD370 /* NetworkController.h */,
+				43D311E21EE89265006DD370 /* NetworkController.m */,
+				43D311C71EE88F3B006DD370 /* ViewController.h */,
+				43D311C81EE88F3B006DD370 /* ViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

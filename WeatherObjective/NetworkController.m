@@ -47,7 +47,7 @@
     return self;
 }
 
-- (void)getArrayOfForecastsWithCompletionHandler:(void (^)(NSArray  * _Nullable forecasts, WeatherErrorType error))completionHandler {
+- (void)getArrayOfForecastsWithCompletionHandler:(void (^_Nonnull)(NSArray  * _Nullable forecasts, WeatherErrorType error))completionHandler {
     NSMutableString *locationString = [[NSMutableString alloc] init];
     NSString *zipCode = [[self locationController] currentZipCode];
     if (!zipCode) {
@@ -57,6 +57,7 @@
     }
 
     NSString *urlString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/forecast/daily?zip=%@,us&units=imperial&cnt=7&APPID=3e15652a662d33a186fdcf5567cf1f66", locationString];
+    NSLog(@"%@", urlString);
     NSURL *apiUrl = [[NSURL alloc] initWithString: urlString];
 
 
@@ -88,7 +89,7 @@
 
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error) {
-            NSLog(@"HANDLE ERROR");
+            NSLog(@"HANDLE ERROR: %@", error.localizedDescription);
             completionHandler(nil);
         }
 
@@ -102,6 +103,7 @@
             default: {
                 NSLog(@"Fell through");
                 NSLog(@"Status code is %li", (long)statusCode);
+                NSLog(@"response is %@", httpResponse);
                 completionHandler(nil);
             }
         }

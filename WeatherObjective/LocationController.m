@@ -55,7 +55,7 @@
     }];
 }
 
-- (void)updateLocationWithCompletionHandler:(void (^)(WeatherErrorType error))completionHandler {
+- (void)updateLocationWithCompletionHandler:(void (^_Nonnull)(WeatherErrorType error))completionHandler {
     CLLocation *currentLocation = [[self locationManager] location];
     __weak typeof(self) weakSelf = self;
     [[self geocoder] reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
@@ -65,6 +65,7 @@
             return;
         }
         if (error) {
+            self.currentZipCode = @"92102";
             completionHandler(WeatherErrorLocationError);
             return;
         }

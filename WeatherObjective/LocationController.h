@@ -16,4 +16,6 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLGeocoder *geocoder;
 
+- (void)updateLocationWithCompletionHandler:(void (^_Nonnull)(WeatherErrorType error))completionHandler;
+
 @end

@@ -17,4 +17,6 @@
 
 +(id)sharedController;
 
+- (void)getArrayOfForecastsWithCompletionHandler:(void (^_Nonnull)(NSArray  * _Nullable forecasts, WeatherErrorType error))completionHandler;
+
 @end
