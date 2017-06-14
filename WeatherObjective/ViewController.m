@@ -11,6 +11,7 @@
 #import "Forecast.h"
 #import "DetailViewController.h"
 #import "NetworkController.h"
+#import "TransitionToDetailController.h"
 
 @interface ViewController ()
 
@@ -97,11 +98,19 @@
         NSIndexPath *selectedPath = [[self tableView] indexPathForSelectedRow];
         if (selectedPath) {
             WeatherCell *selectedCell = [[self tableView] cellForRowAtIndexPath:selectedPath];
-            DetailViewController *detailController = [segue destinationViewController];
+            DetailViewController *detailController = (DetailViewController *)[segue destinationViewController];
             Forecast *selectedForecast = [[self forecasts] objectAtIndex:selectedPath.row];
             detailController.forecast = selectedForecast;
             detailController.forecastImage = [[selectedCell cellImageView] image];
         }
+    }
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
+    if ([fromVC isEqual:self] && [toVC isKindOfClass:[DetailViewController class]]) {
+        return [[TransitionToDetailController alloc] init];
+    } else {
+        return nil;
     }
 }
 

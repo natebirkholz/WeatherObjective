@@ -21,22 +21,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="deB-fl-eDW">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="deB-fl-eDW">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WEATHER_CELL" id="FY1-C5-1mU" customClass="WeatherCell">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FY1-C5-1mU" id="xwF-JH-U5E">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="56r-tl-qog" kind="show" identifier="SHOW_DETAIL" id="vuo-b5-lPh"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -50,6 +37,7 @@
                     <navigationItem key="navigationItem" id="YTY-NO-ZMC"/>
                     <connections>
                         <outlet property="tableView" destination="deB-fl-eDW" id="TKk-WH-Dsf"/>
+                        <segue destination="56r-tl-qog" kind="show" identifier="SHOW_DETAIL" id="svW-UO-zWd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -104,10 +92,10 @@
                         <constraints>
                             <constraint firstItem="XG4-B1-Wfj" firstAttribute="top" secondItem="Xu6-f5-8xZ" secondAttribute="bottom" constant="8" id="7DB-wl-d5H"/>
                             <constraint firstItem="8zI-oP-0fx" firstAttribute="centerX" secondItem="RIq-Ld-ERt" secondAttribute="centerX" id="7s5-8i-Pb6"/>
-                            <constraint firstItem="Xu6-f5-8xZ" firstAttribute="top" secondItem="wke-dD-ONt" secondAttribute="bottom" constant="16" id="CwU-mA-19Y"/>
                             <constraint firstItem="cMy-bb-fSg" firstAttribute="top" secondItem="XG4-B1-Wfj" secondAttribute="bottom" constant="8" id="ZTE-x0-90b"/>
                             <constraint firstItem="Xu6-f5-8xZ" firstAttribute="centerX" secondItem="RIq-Ld-ERt" secondAttribute="centerX" id="bI8-ZF-alJ"/>
                             <constraint firstItem="XG4-B1-Wfj" firstAttribute="centerX" secondItem="RIq-Ld-ERt" secondAttribute="centerX" id="hSV-53-uHV"/>
+                            <constraint firstItem="Xu6-f5-8xZ" firstAttribute="top" secondItem="mnv-Go-rc0" secondAttribute="bottom" constant="168" id="ixh-ql-AGf"/>
                             <constraint firstItem="8zI-oP-0fx" firstAttribute="top" secondItem="cMy-bb-fSg" secondAttribute="bottom" constant="8" id="q50-2B-PiW"/>
                             <constraint firstItem="wke-dD-ONt" firstAttribute="top" secondItem="mnv-Go-rc0" secondAttribute="bottom" constant="24" id="qzV-sJ-lLi"/>
                             <constraint firstItem="cMy-bb-fSg" firstAttribute="centerX" secondItem="RIq-Ld-ERt" secondAttribute="centerX" id="yfL-kx-XIL"/>

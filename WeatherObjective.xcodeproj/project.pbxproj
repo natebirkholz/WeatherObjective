@@ -13,6 +13,7 @@
 		433C94E51EE9B70800B852C8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433C94E41EE9B70800B852C8 /* CoreLocation.framework */; };
 		433C94E61EE9B71400B852C8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433C94E41EE9B70800B852C8 /* CoreLocation.framework */; };
 		433C94E71EE9B71400B852C8 /* CoreLocation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 433C94E41EE9B70800B852C8 /* CoreLocation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		439018D31EF0607D008C8ACD /* TransitionToDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439018D21EF0607D008C8ACD /* TransitionToDetailController.m */; };
 		43D311C31EE88F3B006DD370 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D311C21EE88F3B006DD370 /* main.m */; };
 		43D311C61EE88F3B006DD370 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D311C51EE88F3B006DD370 /* AppDelegate.m */; };
 		43D311C91EE88F3B006DD370 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D311C81EE88F3B006DD370 /* ViewController.m */; };
@@ -48,6 +49,8 @@
 		433C94E11EE9B6C100B852C8 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
 		433C94E41EE9B70800B852C8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		439018AD1EEC6BD0008C8ACD /* Enums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Enums.h; sourceTree = "<group>"; };
+		439018D11EF0607D008C8ACD /* TransitionToDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionToDetailController.h; sourceTree = "<group>"; };
+		439018D21EF0607D008C8ACD /* TransitionToDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionToDetailController.m; sourceTree = "<group>"; };
 		43D311BE1EE88F3B006DD370 /* WeatherObjective.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherObjective.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D311C21EE88F3B006DD370 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		43D311C41EE88F3B006DD370 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -163,6 +166,8 @@
 				43D311E21EE89265006DD370 /* NetworkController.m */,
 				43D311C71EE88F3B006DD370 /* ViewController.h */,
 				43D311C81EE88F3B006DD370 /* ViewController.m */,
+				439018D11EF0607D008C8ACD /* TransitionToDetailController.h */,
+				439018D21EF0607D008C8ACD /* TransitionToDetailController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -241,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				439018D31EF0607D008C8ACD /* TransitionToDetailController.m in Sources */,
 				43D311C91EE88F3B006DD370 /* ViewController.m in Sources */,
 				433C94DF1EE8A87C00B852C8 /* JsonController.m in Sources */,
 				43D311C61EE88F3B006DD370 /* AppDelegate.m in Sources */,
