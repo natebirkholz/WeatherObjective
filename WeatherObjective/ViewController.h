@@ -11,17 +11,6 @@
 @interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
-
-
-
-
-
-
-
-
-
-
 @property (strong, nonatomic) NSArray *forecasts;
 
 @end

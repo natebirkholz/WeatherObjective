@@ -13,7 +13,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.dateFormatter = [[NSDateFormatter alloc] init];
+        [self setDateFormatter:[[NSDateFormatter alloc] init]];
         [[self dateFormatter] setDateFormat:@"EEEE"];
     }
 
@@ -21,9 +21,9 @@
 }
 
 - (NSArray *)parseForecastsFromJsonData:(NSData *)rawJsonData {
-
     NSError *error;
     NSMutableArray *arrayOfForecasts = [[NSMutableArray alloc] init];
+
     NSDictionary *dictionaryFromJson = [NSJSONSerialization JSONObjectWithData:rawJsonData options:NSJSONReadingAllowFragments error:&error];
     if (error) {
         NSLog(@"Error parsing JSON: %@", [error localizedDescription]);
@@ -49,6 +49,8 @@
     return arrayOfForecasts;
 }
 
+#pragma mark - Helper methods
+
 - (NSString *)getWeatherTypeFromWeatherId:(NSInteger)weatherId {
     if (weatherId == 800 || weatherId == 801) {
         return @"Sunny";
@@ -73,7 +75,5 @@
     NSString *dateString = [[self dateFormatter] stringFromDate:aDate];
     return dateString;
 }
-
-
 
 @end

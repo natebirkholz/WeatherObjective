@@ -20,7 +20,7 @@
 
 
 // ------------------------
-#pragma mark Singleton
+#pragma mark - Singleton and Init
 // ------------------------
 
 // Boilerplate standardized Singleton pattern as recommended by Apple
@@ -40,12 +40,14 @@
 
 - (instancetype) init {
     if (self = [super init]) {
-        self.jsonController = [[JsonController alloc] init];
-        self.locationController = [[LocationController alloc] init];
+        [self setJsonController:[[JsonController alloc] init]];
+        [self setLocationController:[[LocationController alloc] init]];
     }
 
     return self;
 }
+
+#pragma mark - Network methods
 
 - (void)getArrayOfForecastsWithCompletionHandler:(void (^_Nonnull)(NSArray  * _Nullable forecasts, WeatherErrorType error))completionHandler {
     NSMutableString *locationString = [[NSMutableString alloc] init];
@@ -78,11 +80,9 @@
             }
         });
     }];
-
-
 }
 
-- (void)fetchJSONDataFromURL:(NSURL *)fetchURL withCompletionHandler:(void (^)(NSData *dataFromURL))completionHandler {
+- (void)fetchJSONDataFromURL:(NSURL *)fetchURL withCompletionHandler:(void (^)(NSData * _Nullable dataFromURL))completionHandler {
     NSURLSession *session = [NSURLSession sharedSession];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:fetchURL];
     [request setHTTPMethod:@"GET"];

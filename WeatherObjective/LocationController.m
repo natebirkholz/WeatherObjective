@@ -12,14 +12,14 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.locationManager = [[CLLocationManager alloc] init];
+        [self setLocationManager:[[CLLocationManager alloc] init]];
         [[self locationManager] setDelegate:self];
         [[self locationManager] setDistanceFilter:kCLDistanceFilterNone];
         [[self locationManager] setDesiredAccuracy:kCLLocationAccuracyKilometer];
 
-        self.geocoder = [[CLGeocoder alloc] init];
+        [self setGeocoder:[[CLGeocoder alloc] init]];
 
-        self.currentZipCode = @"92102";
+        [self setCurrentZipCode:@"92102"];
 
         switch ([CLLocationManager authorizationStatus]) {
             case kCLAuthorizationStatusNotDetermined:
@@ -48,7 +48,7 @@
 
         if ([placemarks count] > 0) {
             CLPlacemark *place = placemarks[0];
-            strongSelf.currentZipCode = [place postalCode];
+            [strongSelf setCurrentZipCode:[place postalCode]];
         } else {
             NSLog(@"Zero places found");
         }
@@ -65,7 +65,7 @@
             return;
         }
         if (error) {
-            self.currentZipCode = @"92102";
+            [self setCurrentZipCode:@"92102"];
             completionHandler(WeatherErrorLocationError);
             return;
         }
@@ -74,7 +74,7 @@
             CLPlacemark *place  = [placemarks firstObject];
             NSString *zip = [place postalCode];
             if (zip) {
-                self.currentZipCode = zip;
+                [self setCurrentZipCode:zip];
                 completionHandler(WeatherErrorNoError);
             } else {
                 completionHandler(WeatherErrorLocationError);

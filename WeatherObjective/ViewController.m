@@ -19,6 +19,8 @@
 
 @implementation ViewController
 
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -35,26 +37,30 @@
 
     [[[NetworkController sharedController] locationController] updateLocationWithCompletionHandler:^(WeatherErrorType error) {
         if (error != WeatherErrorNoError) {
-            // TODO HANDLE ERROR
+            [self handleError:error];
         }
 
         [[NetworkController sharedController] getArrayOfForecastsWithCompletionHandler:^(NSArray * _Nullable forecasts, WeatherErrorType error) {
             typeof(weakSelf) strongSelf = weakSelf;
             if (!strongSelf) {
-                // handle error? I mean, there's no self at this point
+                [weakSelf handleError:WeatherErrorMissingInstance];
+                return;
             }
 
             if (error != WeatherErrorNoError) {
-                // handle error
+                [strongSelf handleError:error];
+                return;
             }
 
             if ([forecasts count] > 0) {
-                self.forecasts = forecasts;
+                [self setForecasts:forecasts];
                 [[self tableView] reloadData];
             }
         }];
     }];
 }
+
+#pragma mark - TableView
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -93,6 +99,8 @@
     }
 }
 
+#pragma mark - Segue
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"SHOW_DETAIL"]) {
         NSIndexPath *selectedPath = [[self tableView] indexPathForSelectedRow];
@@ -100,8 +108,8 @@
             WeatherCell *selectedCell = [[self tableView] cellForRowAtIndexPath:selectedPath];
             DetailViewController *detailController = (DetailViewController *)[segue destinationViewController];
             Forecast *selectedForecast = [[self forecasts] objectAtIndex:selectedPath.row];
-            detailController.forecast = selectedForecast;
-            detailController.forecastImage = [[selectedCell cellImageView] image];
+            [detailController setForecast:selectedForecast];
+            [detailController setForecastImage:[[selectedCell cellImageView] image]];
         }
     }
 }
@@ -112,6 +120,33 @@
     } else {
         return nil;
     }
+}
+
+#pragma mark - Error handling
+
+- (void)handleError:(WeatherErrorType)weatherError {
+    switch (weatherError) {
+        case WeatherErrorParseError:
+            [self showError:@"The data from the server was not recognizd. Please try again shortly."];
+            break;
+        case WeatherErrorNetworkError:
+            [self showError:@"Unable to reach the server. Please check your Internet connection and try again."];
+            break;
+        case WeatherErrorLocationError:
+            [self showError:@"Unable to determine your location. Attempting to display the weather in sunny San Diego, instead."];
+            break;
+        default:
+            [self showError:@"An unknown error occurred. Please check your Internet connection and try again soon."];
+            break;
+    }
+
+}
+
+- (void)showError:(NSString *)errorMessge {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:errorMessge preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 

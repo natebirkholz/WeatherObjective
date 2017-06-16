@@ -20,12 +20,4 @@
 @property (strong, nonatomic) Forecast *forecast;
 @property (strong, nonatomic) UIImage *forecastImage;
 
-
-
-
-
-
-
-
-
 @end

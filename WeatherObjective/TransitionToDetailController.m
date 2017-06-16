@@ -39,6 +39,7 @@
     [containerView addSubview:[toVc view]];
     [containerView addSubview:snapshotView];
 
+    // Make sure everything has its final position set, size classes issue.
     [[toVc view] setNeedsLayout];
     [[toVc view] layoutIfNeeded];
 
